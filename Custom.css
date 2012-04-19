@@ -1,0 +1,105 @@
+ï»¿/**
+   * SipgatePhoneState
+   * Custom.css
+   * Version 1.00 (17.04.2012) Lars Kempkens, okadis Consulting GmbH
+   * Diese Datei ersetzt (oder erweitert) eine bestehende Custom.css
+   * von Chrome, welche sich in dem Benutzerverzeichnis befindet.
+   */
+
+/**
+ ** Ausblenden aller Objekten auf der sipgate Seite
+ **/
+#header{
+	display:none !important;
+}
+
+#content_container {
+	display:none !important;
+}
+
+
+/**
+ ** Festlegen der neuen Formate fuer den Telefonstatus:
+ **/
+.okaPhoneState {
+	position:absolute;
+	
+	margin:4px;					
+	
+	border-width:2px;					
+	border-style:solid;
+
+	border-radius:13px; 
+	-moz-border-radius:13px; 
+	-webkit-border-radius:13px; 
+	
+	font-family:Verdana;
+	font-style:normal;
+	text-align:center;
+	vertical-align:middle;
+	
+	background-image:none;
+	background-color:rgb(255,204,153);
+	border-color:rgb(255,179,102);
+}
+
+/*
+ * Eigene Klasse, die die Blöcke, welche die
+ * einzelnen Namen über den Telefonnummern 
+ * darstellen,  definiert.
+ */
+.okaPhoneStateName {
+	font-family:Verdana;
+	font-style:normal;
+	text-align:center;
+	vertical-align:bottom;
+	
+	display:block;
+	width:100%;
+	height:30px;
+	top:0px;
+	left:0px;
+	right:auto;
+	position:absolute;
+	
+	bottom:-10px;
+}
+
+/*
+ * Diese Klasse wird von Sipgate gesendet, wenn eine
+ * Durchwahl derzeit spricht
+ * (Anzeige ist blau)
+  */
+.phoneState_unavailable {
+	background-image:none !important;	
+	background-color:rgb(255,255,128);
+	border-color:rgb(255,191,128);
+}	
+
+
+/*
+ * Diese Klasse wird von Sipgate gesendet, wenn jemand
+  * bei einer Durchwahl anruft
+  * (Anzeige ist gelb)
+  */
+.phoneState_ringing {
+	background-image:none !important;
+	background-color:rgb(153,204,255);
+	border-color:rgb(92,173,255);
+}
+
+/*
+  * Das ursprüngliche Logo der Firma wird von uns
+  * an einem eigenen Bereich eingefügt, welcher
+  * rechts unten im Bild ist (die Blöcke werden
+  * ja von link oben angefangen gefüllt, so dass
+  * es am wahrscheinlichsten ist, dass wir den Block
+  * rechts unten frei lassen.
+  */
+#logo {
+	display:block			!important;
+	position:absolute		!important;
+	bottom:5px				!important;
+	right:5px				!important;
+	z-index:-1				!important;
+}
