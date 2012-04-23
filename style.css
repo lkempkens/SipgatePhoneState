@@ -1,10 +1,17 @@
-ï»¿/**
+/**
    * SipgatePhoneState
    * Custom.css
    * Version 1.00 (17.04.2012) Lars Kempkens, okadis Consulting GmbH
    * Diese Datei ersetzt (oder erweitert) eine bestehende Custom.css
    * von Chrome, welche sich in dem Benutzerverzeichnis befindet.
    */
+
+/**
+ ** Scrollleisten verstecken
+ **/
+body {
+	overflow: hidden;
+}
 
 /**
  ** Ausblenden aller Objekten auf der sipgate Seite
@@ -23,7 +30,6 @@
  **/
 .okaPhoneState {
 	position:absolute;
-	
 	margin:4px;					
 	
 	border-width:2px;					
@@ -44,8 +50,8 @@
 }
 
 /*
- * Eigene Klasse, die die Blöcke, welche die
- * einzelnen Namen über den Telefonnummern 
+ * Eigene Klasse, die die BlÃ¶cke, welche die
+ * einzelnen Namen Ã¼ber den Telefonnummern 
  * darstellen,  definiert.
  */
 .okaPhoneStateName {
@@ -63,6 +69,12 @@
 	position:absolute;
 	
 	bottom:-10px;
+}
+
+.okaPhoneStateText {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 /*
@@ -89,10 +101,10 @@
 }
 
 /*
-  * Das ursprüngliche Logo der Firma wird von uns
-  * an einem eigenen Bereich eingefügt, welcher
-  * rechts unten im Bild ist (die Blöcke werden
-  * ja von link oben angefangen gefüllt, so dass
+  * Das ursprÃ¼ngliche Logo der Firma wird von uns
+  * an einem eigenen Bereich eingefÃ¼gt, welcher
+  * rechts unten im Bild ist (die BlÃ¶cke werden
+  * ja von link oben angefangen gefÃ¼llt, so dass
   * es am wahrscheinlichsten ist, dass wir den Block
   * rechts unten frei lassen.
   */
