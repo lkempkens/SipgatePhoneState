@@ -1,0 +1,12 @@
+{
+   "content_scripts": [ {
+      "js": [ "SipgatePhoneState.user.js" ],
+      "css": ["style.css"],
+      "matches": [ "https://secure.live.sipgate.de/*" ],
+      "run_at": "document_idle"
+   } ],
+   "description": "change sipgate website to a bigger lamp field",
+   "key": "00IDPcOkBNPMotv8YJ05gUKrOOm97rU9FAj7tfMa3m4=",
+   "name": "sipgate besetztlampenfeld",
+   "version": "1.0"
+}
