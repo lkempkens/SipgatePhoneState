@@ -1,25 +1,24 @@
-SipgatePhoneState
-=================
+# SipgatePhoneState # 
 
-= Wichtiger Hinweis =
+## Wichtiger Hinweis ##
 
 Dies ist keine offizielle Software von Sipgate!
 
-= Beschreibung =
+## Beschreibung ##
 
 Ermittelt den aktuellen Status (wird angerufen, telefoniert) der angeschlossenen Telefone an 
 einer virtuellen Telefonanlage von Sipgate.
 
-= Hintergrund =
+## Hintergrund ##
 
-Als Kunde von Sipgate mit dem Produkt Sipgate Team wünschten wir uns eine Übersicht über den Status 
-aller angeschlossenen Telefone - so, wie es zuvor bei unserer lokalen Telefonanlage auch möglich war.
-In dem Portal, welches Sipgate jedem Benutzer zur Verfügung stellt, ist eine solche Übersicht vorhanden,
+Als Kunde von Sipgate mit dem Produkt Sipgate Team wÃ¼nschten wir uns eine Ãœbersicht Ã¼ber den Status 
+aller angeschlossenen Telefone - so, wie es zuvor bei unserer lokalen Telefonanlage auch mÃ¶glich war.
+In dem Portal, welches Sipgate jedem Benutzer zur VerfÃ¼gung stellt, ist eine solche Ãœbersicht vorhanden,
 die auch in Echtzeit den Status der Durchwahlen anzeigt.
 Die vorhandene API bietet eine solche Anzeige derzeit leider noch nicht. Hieraus wuchs die Idee,
-das Portal für alle Mitarbeiter so darzustellen, dass der Fokus auf den Telefonstatus liegt.
+das Portal fï¿½r alle Mitarbeiter so darzustellen, dass der Fokus auf den Telefonstatus liegt.
 
-= Aufbau =
+## Aufbau ##
 
 Als Basis dient ein ausgemustertes Notebook, welches mit einer aktuellen Ubuntu Desktopversion 
 versehen wurde. Statt Firefox wurde Chrome installiert. 
@@ -28,13 +27,13 @@ chrome im Kioskmodus mit der Sipgate Login Seite gestartet wird:
 
   chrome --kiosk https://secure.live.sipgate.de
   
-Die hier im Repository angehängte css Datei wird in das Verzeichnis "User Stylesheets" von chrome eingefügt (sie ersetzt oder ergänzt die Datei Custom.css), welches normalerweise unter 
+Die hier im Repository angehÃ¤ngte css Datei wird in das Verzeichnis "User Stylesheets" von chrome eingefÃ¼gt (sie ersetzt oder ergÃ¤nzt die Datei Custom.css), welches normalerweise unter 
   
   ~<benutzername>/.config/google-chrome/Default/User\ StyleSheets
   
 liegt.
 
-Die im Repository beiligende Javascript Datei ergänzt das User Stylesheet und kümmert sich um das automatische Einloggen und das Plazieren der Elemente. Es handelt sich dabei um eine Javascript-Datei, die als Extension nach Chrome installiert wird (hierzu die Javascript Datei einfach auf die Adresszeile von Chrome ziehen und den Abfragen folgen). Vor der Installation ist es auf jeden Fall notwendig, dass die Logindaten des Abfragebenutzers in das Skript eingetragen werden.
+Die im Repository beiligende Javascript Datei ergÃ¤nzt das User Stylesheet und kÃ¼mmert sich um das automatische Einloggen und das Plazieren der Elemente. Es handelt sich dabei um eine Javascript-Datei, die als Extension nach Chrome installiert wird (hierzu die Javascript Datei einfach auf die Adresszeile von Chrome ziehen und den Abfragen folgen). Vor der Installation ist es auf jeden Fall notwendig, dass die Logindaten des Abfragebenutzers in das Skript eingetragen werden.
 (Siehe folgenden Auszug aus der JavaScriptdatei)
 
 
@@ -42,13 +41,13 @@ Die im Repository beiligende Javascript Datei ergänzt das User Stylesheet und kü
 
 /*
  * UserInformation
- * !!!!! Die folgenden Informationen müssen ausgetauscht werden !!!!!!
+ * !!!!! Die folgenden Informationen mÃ¼ssen ausgetauscht werden !!!!!!
  * Da sich das Skript selbst einloggen muss,
- * (und ich keine bessere Lösung gefunden habe)
- * müssen hier BenutzerId und Passwort einge-
+ * (und ich keine bessere LÃ¶sung gefunden habe)
+ * mÃ¼ssen hier BenutzerId und Passwort einge-
  * tragen werden.
  */
-userConfig = {};
+userConfig ## {};
 userConfig.mainUserId = '1234567';
 userConfig.username = 'anybody@unknown.org';
 userConfig.password = 'wirklich_schwieriges_passwort';
@@ -56,8 +55,8 @@ userConfig.password = 'wirklich_schwieriges_passwort';
 [...]
 
 Hierbei steht 
-- userConfig.mainUserId für die eigene SipGate Kundennummer
-- userConfig.username   für den Loginnamen eines eigenen Benutzers, mit dem der Telefonstatus überwacht werden soll
-- userConfig.password   Passwort des Benutzers, der den Telefonstatus überwachen soll.
+- userConfig.mainUserId fÃ¼r die eigene SipGate Kundennummer
+- userConfig.username   fÃ¼r den Loginnamen eines eigenen Benutzers, mit dem der Telefonstatus Ã¼berwacht werden soll
+- userConfig.password   Passwort des Benutzers, der den Telefonstatus Ã¼berwachen soll.
 
-Viel Spaß!
+Viel Spaï¿½!
