@@ -1,24 +1,24 @@
-# SipgatePhoneState # 
+# SipgatePhoneState
 
-## Wichtiger Hinweis ##
+## Wichtiger Hinweis
 
 Dies ist keine offizielle Software von Sipgate!
 
-## Beschreibung ##
+## Beschreibung
 
 Ermittelt den aktuellen Status (wird angerufen, telefoniert) der angeschlossenen Telefone an 
 einer virtuellen Telefonanlage von Sipgate.
 
-## Hintergrund ##
+## Hintergrund
 
 Als Kunde von Sipgate mit dem Produkt Sipgate Team wünschten wir uns eine Übersicht über den Status 
 aller angeschlossenen Telefone - so, wie es zuvor bei unserer lokalen Telefonanlage auch möglich war.
 In dem Portal, welches Sipgate jedem Benutzer zur Verfügung stellt, ist eine solche Übersicht vorhanden,
 die auch in Echtzeit den Status der Durchwahlen anzeigt.
 Die vorhandene API bietet eine solche Anzeige derzeit leider noch nicht. Hieraus wuchs die Idee,
-das Portal f�r alle Mitarbeiter so darzustellen, dass der Fokus auf den Telefonstatus liegt.
+das Portal für alle Mitarbeiter so darzustellen, dass der Fokus auf den Telefonstatus liegt.
 
-## Aufbau ##
+## Aufbau
 
 Als Basis dient ein ausgemustertes Notebook, welches mit einer aktuellen Ubuntu Desktopversion 
 versehen wurde. Statt Firefox wurde Chrome installiert. 
@@ -47,7 +47,7 @@ Die im Repository beiligende Javascript Datei ergänzt das User Stylesheet und k
  * müssen hier BenutzerId und Passwort einge-
  * tragen werden.
  */
-userConfig ## {};
+userConfig = {};
 userConfig.mainUserId = '1234567';
 userConfig.username = 'anybody@unknown.org';
 userConfig.password = 'wirklich_schwieriges_passwort';
@@ -59,4 +59,4 @@ Hierbei steht
 - userConfig.username   für den Loginnamen eines eigenen Benutzers, mit dem der Telefonstatus überwacht werden soll
 - userConfig.password   Passwort des Benutzers, der den Telefonstatus überwachen soll.
 
-Viel Spa�!
+Viel Spaß!
