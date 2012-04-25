@@ -17,8 +17,10 @@
  * tragen werden.
  */
 var userConfig = {};
-userConfig.username = 'username@example.org';
-userConfig.password = 'password';
+chrome.extension.sendRequest({method: "getCredentials"}, function(response) {
+	userConfig.username = response.email;
+	userConfig.password = response.password;
+});
 
 // Das Blockobjekt erzeugen wir mit einer Vorschlagsgröße,
 // um dann später mit besseren Werten weiterrechnen zu 
@@ -140,6 +142,7 @@ function BlockControl() {
 function login() {
 	// Wir füllen per Skript nun die einzelnen Felder aus:
 	var form = document.getElementById('standardlogin');
+	if (userConfig.username == undefined || userConfig.password == undefined) { alert('Please set email and password in extension settings'); return;};
 	form.username.value = userConfig.username;
 	form.password.value = userConfig.password;
 	form.autologin.checked = true;
