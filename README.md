@@ -1,63 +1,36 @@
-SipgatePhoneState
-=================
+# SipgatePhoneState
 
-= Wichtiger Hinweis =
+## Wichtiger Hinweis
 
-Dies ist keine offizielle Software von Sipgate!
+Dies ist keine offiziell supportete Software von Sipgate!
 
-= Beschreibung =
+## Beschreibung
 
 Ermittelt den aktuellen Status (wird angerufen, telefoniert) der angeschlossenen Telefone an 
 einer virtuellen Telefonanlage von Sipgate.
 
-= Hintergrund =
+## Hintergrund
 
-Als Kunde von Sipgate mit dem Produkt Sipgate Team wünschten wir uns eine Übersicht über den Status 
-aller angeschlossenen Telefone - so, wie es zuvor bei unserer lokalen Telefonanlage auch möglich war.
-In dem Portal, welches Sipgate jedem Benutzer zur Verfügung stellt, ist eine solche Übersicht vorhanden,
+Als Kunde von Sipgate mit dem Produkt Sipgate Team wÃ¼nschten wir uns eine Ãœbersicht Ã¼ber den Status 
+aller angeschlossenen Telefone - so, wie es zuvor bei unserer lokalen Telefonanlage auch mÃ¶glich war.
+In dem Portal, welches Sipgate jedem Benutzer zur VerfÃ¼gung stellt, ist eine solche Ãœbersicht vorhanden,
 die auch in Echtzeit den Status der Durchwahlen anzeigt.
 Die vorhandene API bietet eine solche Anzeige derzeit leider noch nicht. Hieraus wuchs die Idee,
-das Portal für alle Mitarbeiter so darzustellen, dass der Fokus auf den Telefonstatus liegt.
+das Portal fÃ¼r alle Mitarbeiter so darzustellen, dass der Fokus auf den Telefonstatus liegt.
 
-= Aufbau =
+## Installation
 
-Als Basis dient ein ausgemustertes Notebook, welches mit einer aktuellen Ubuntu Desktopversion 
-versehen wurde. Statt Firefox wurde Chrome installiert. 
-Unity wurde so konfiguriert, dass der (einzige) Benutzer direkt angemeldet wird und beim Hochfahren
-chrome im Kioskmodus mit der Sipgate Login Seite gestartet wird:
+Noch ist die Extension keine offiziell supportete Extension, und somit nicht Ã¼ber die Google Extensionsuche zu finden.
 
-  chrome --kiosk https://secure.live.sipgate.de
-  
-Die hier im Repository angehängte css Datei wird in das Verzeichnis "User Stylesheets" von chrome eingefügt (sie ersetzt oder ergänzt die Datei Custom.css), welches normalerweise unter 
-  
-  ~<benutzername>/.config/google-chrome/Default/User\ StyleSheets
-  
-liegt.
+Installation ist nur Ã¼ber die DeveloperÃ¼bersicht in Chrome mÃ¶glich:
 
-Die im Repository beiligende Javascript Datei ergänzt das User Stylesheet und kümmert sich um das automatische Einloggen und das Plazieren der Elemente. Es handelt sich dabei um eine Javascript-Datei, die als Extension nach Chrome installiert wird (hierzu die Javascript Datei einfach auf die Adresszeile von Chrome ziehen und den Abfragen folgen). Vor der Installation ist es auf jeden Fall notwendig, dass die Logindaten des Abfragebenutzers in das Skript eingetragen werden.
-(Siehe folgenden Auszug aus der JavaScriptdatei)
+* Ãœber Tools->Extensions die ExtensionsÃ¼bersicht Ã¶ffnen
+* Im oberen Teil der Seite "Developer mode" aktivieren
+* Ãœber den Button "Load unpacked extension..." den Ordner der Extension aussuchen.
+* Beim ersten Start Ã¶ffnet sich das optionsmenÃ¼. Hier mÃ¼ssen zwingend die Usercredentials eingetragen werden.
+* Beim besuch der sipgate Team Seite wird jetzt der Account automatisch eingeloggt und das Besetztlampengfeld gestartet.
 
+## TODO
 
-[...]
-
-/*
- * UserInformation
- * !!!!! Die folgenden Informationen müssen ausgetauscht werden !!!!!!
- * Da sich das Skript selbst einloggen muss,
- * (und ich keine bessere Lösung gefunden habe)
- * müssen hier BenutzerId und Passwort einge-
- * tragen werden.
- */
-userConfig = {};
-userConfig.mainUserId = '1234567';
-userConfig.username = 'anybody@unknown.org';
-userConfig.password = 'wirklich_schwieriges_passwort';
-
-[...]
-
-Hierbei steht 
-- userConfig.mainUserId für die eigene SipGate Kundennummer
-- userConfig.username   für den Loginnamen eines eigenen Benutzers, mit dem der Telefonstatus überwacht werden soll
-- userConfig.password   Passwort des Benutzers, der den Telefonstatus überwachen soll.
-
-Viel Spaß!
+* Endlosschleife bei falschen Usercredentials fixen
+* Settings

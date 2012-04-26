@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF8">
+<script type="text/javascript" src="lib/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="options.js"></script>
+<link rel="stylesheet" type="text/css" href="options.css">
+<title>sipgate statuslights settings</title>
+</head>
+<body>
+	<div id="container">
+		<header>
+			<h1 id="logo">sipgate status settings</h1>
+			<h2 id="version"></h2>
+		</header>
+
+		<nav id="l">
+			<ul class="tabs">
+				<li translation="account" class="tabHead" id="switch_account">Account</li>
+<!-- 				<li translation="settings" class="tabHead" id="switch_settings">Settings</li> -->
+			</ul>
+		</nav>
+
+		<div id="content">
+			<section id="message_success" style="display:none"></section>
+			<section class="tab hidden" id="tab_account">
+				<header translation="account">Account</header>
+				<div class="tabContent">
+					<ul>
+						<li><label translation="username" class="h" for="username">Username</label>
+							<input type="text" class="setting" name="username" placeholder="Username/E-Mail" id="email" />
+						</li>
+
+						<li><label translation="password" class="h" for="password">Password</label>
+							<input type="password" class="setting" name="password" placeholder="Password" id="password">
+						</li>
+						<li><button id="settings_save" translation="save">Save</button></li>
+					</ul>
+					
+				</div>
+			</section>
+<!-- 
+			<section class="tab hidden" id="tab_settings">
+				<header translation="settings">Settings</header>
+				<div class="tabContent">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eu lacus nec lacus interdum sodales. Nulla eu nibh sed libero facilisis egestas condimentum quis ipsum. Morbi a massa vitae mauris tincidunt porttitor id ut turpis. Praesent lacus erat, fermentum non blandit a, bibendum non ante. Aenean dictum sollicitudin risus, a egestas augue vestibulum nec. In lacus mi, venenatis ut ornare vitae, blandit sit amet lectus. Mauris rutrum enim nec magna facilisis vel placerat elit pulvinar. Ut lacinia dictum lorem, at aliquam lacus auctor sit amet.</p>
+					<p>Quisque dictum eleifend ligula, et euismod orci pretium ac. Sed id neque eu sapien pellentesque faucibus. Pellentesque ultricies diam ut mi sollicitudin dictum. Nunc lobortis, metus dapibus congue interdum, eros sapien malesuada ante, quis semper felis elit eget massa. Quisque tellus nulla, porttitor id bibendum quis, porttitor non enim. Vivamus condimentum erat eros. In nec sapien fringilla purus suscipit fermentum. Pellentesque ac leo libero, ac gravida enim. Nunc vehicula justo vel dui mattis aliquam. Vestibulum non condimentum purus. Pellentesque malesuada lectus sit amet sem venenatis lobortis. Proin non neque mi, eu aliquam lorem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In vel consequat enim. Nullam quis ornare sem. Cras ac purus erat, sit amet tristique purus.</p>
+				</div>
+			</section>
+-->
+		</div>
+	</div>
+
+</body>
+</html>
