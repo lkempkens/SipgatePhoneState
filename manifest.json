@@ -2,7 +2,10 @@
    "content_scripts": [ {
       "js": [ "SipgatePhoneState.user.js" ],
       "css": ["style.css"],
-      "matches": [ "https://secure.live.sipgate.de/*" ],
+      "matches": [
+			"https://secure.live.sipgate.de/",
+			"https://secure.live.sipgate.de/signin/team"
+		],
       "run_at": "document_idle"
    } ],
    "options_page": "options.html",

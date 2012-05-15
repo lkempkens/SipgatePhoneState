@@ -273,6 +273,14 @@ function exchangeElement(element, count) {
 	nElement.style.fontSize = toPx(block.getRowSize() / 2);
 }
 
+function isLoginForm() {
+	return (document.getElementById('standardlogin'));
+}
+
+function loginFailed() {
+	return (document.getElementsByClassName('failed_login').length > 0);
+}
+
 // Wir warten noch einmal fünf Sekunden, bis wir sicher sind, dass 
 // auch wirklich alles komplett übernommen wurde und alle Anfangsskripte
 // der Seite durchgelaufen sind.
@@ -280,7 +288,11 @@ function exchangeElement(element, count) {
 // hat.
 var loadedTimer = window.setTimeout(checkLoaded, 100);
 function checkLoaded() {
-	if (document.getElementById('standardlogin')) {
+	if (isLoginForm()) {
+		if(loginFailed()) {
+			alert('Credentials wrong. Please check in settings');
+			return;
+		}
 		// In diesem Fall müssen wir versuchen uns einzuloggen:
 		console.log("Login...");
 		login();
