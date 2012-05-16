@@ -27,6 +27,65 @@ chrome.extension.sendRequest({method: "getCredentials"}, function(response) {
 // können...
 var block = new BlockControl();
 
+var phonestate = {
+	
+	listOfNodes: null,
+	blockControl: null,
+
+	run: function() {
+		this.blockControl = new BlockControl();
+		this.fixStyles();
+		this.loadNodes();
+		this.blockControl.setNumberOfBlocks(this.listOfNodes.length);
+		this.blockControl.calculate();
+		this.setNodePositions();
+	},
+
+	fixStyles: function() {
+		$('.phoneState_unavailable').removeClass('phoneState_unavailable');
+		$('.phoneState_ringing').removeClass('phoneState_ringing');
+		$('#internal_pulldown').addClass('open');
+		$.each($('div.pulldown_body #pulldown_list_internal li.numberrow a span'), function(i, node) {
+			$(node).css('float', 'none');
+		});
+	},
+
+	loadNodes: function() {
+		this.listOfNodes = $('div.pulldown_body #pulldown_list_internal li.numberrow');
+	},
+
+	setNodePositions: function() {
+		$.each(this.listOfNodes, function(index, node) {
+			var jNode = $(node);
+
+			var currentRow = Math.ceil( (index+1) / phonestate.blockControl.getColumnCount() );
+			var currentColumn = index - ((currentRow-1) * phonestate.blockControl.getColumnCount());
+			var marginLeft = 5;
+			var marginTop = 5;
+
+			//move content of LI into container DIV
+			jNode.append("<div></div>");
+			var container = jNode.children('div');
+			jNode.find('a').appendTo(container);
+
+			//give the container the ID of the span
+			var numberSpan = jNode.find('div a span'); 
+			var id = numberSpan.attr('id');
+			numberSpan.removeAttr('id');
+			container.attr('id', id);
+
+			jNode.css('position', 'fixed');
+			jNode.css('width',phonestate.blockControl.getColumnSize() - marginLeft);
+			jNode.css('height', phonestate.blockControl.getRowSize() - marginTop);
+			jNode.css('left', currentColumn * phonestate.blockControl.getColumnSize());
+			jNode.css('top', (currentRow-1) * phonestate.blockControl.getRowSize());
+			jNode.find('div a span').css('font-size', phonestate.blockControl.getRowSize() / 2);
+			jNode.find('div a').css('font-size', phonestate.blockControl.getRowSize() / 6);
+		});
+		
+	}
+}
+
 /* 
  * Die Klasse kontrolliert die Größe
  * der Blöcke und erlaubt eine Positionierung
@@ -151,128 +210,6 @@ function login() {
 	form.submit();
 }
 
-
-
-/*
- * toPx
- * Gibt einen Wert als Pixel-String für die 
- * Styleangaben wieder zurück
- */
-function toPx(value) {
-	return value.toString() + "px";
-}
-
-
-/* 
- * buildOverview
- * wir bauen jetzt eine eigene Übersicht über alle
- * vorhandenen Telefone auf, in dem wir uns nach
- * Objekten umschauen, die vom Typ LI sind und die
- * von der ID auf die von uns gesuchte ID passen.
- * Diese Einträge kopieren wir dann mit einer anderen
- * Kennung. Wahrscheinlich wird das dann auch dazu führen,
- * dass die Darstellung automatisch angepasst wird.	 
- */
-function buildOverview() {
-	// Die Status der Telefone liegen direkt hierdrin
-	var phoneStateId = "phoneState-";
-	
-	// Die Telefonnummern sind in einzelne SPAN Feldern enthalten,
-	// die wir nun stück für stück ausblenden...
-	var elements = document.getElementsByTagName('span');
-	var relElements = new Array();
-	
-	for (var i=0; i < elements.length; i++) {
-		if (phoneStateId == elements[i].id.substring(0,phoneStateId.length)) {
-			var element = elements[i];
-			// Elemente ohne Namen ignorieren
-			if(element.parentNode.textContent == element.textContent) {
-				continue;
-			}
-			// Nun löschen wir als erstes den Eintrag mit dieser Id und setzen 
-			// einen neuen Eintrag ein, welcher als DIV Eintrag auf dem nächsten 
-			// Objekt passt.
-			relElements.push(element);
-		}
-	}
-
-	// Nun bereiten wir zunächst unsere Blockverteilung auf die
-	// Anzahl der zu bearbeitenden Elemente vor
-	block.setNumberOfBlocks(relElements.length);
-
-	for (var i=0; i < relElements.length; i++) {
-		exchangeElement(relElements[i], i);
-	}
-	
-
-	// Das bereits bestehende Logo müssen wir nun
-	// noch direkt unter das Bodyelement schieben,
-	// da es nur da noch angezeigt wird. 
-	var logo = document.getElementById('logo');
-	logo.parentNode.removeChild(logo);
-	document.getElementsByTagName('body')[0].appendChild(logo);
-
-	var header = document.getElementById('header');
-	header.parentNode.removeChild(header);
-};
- 
- 
-/*
- * Austausch der Elemente. Da die Elemente direkt durch Javascript
- * beim Klingeln ihre neue Klasse erhalten, tauschen wir die ursprünglichen
- * Elemente anhand ihrer ID gegen unsere neuen Elemente aus.
- */
-function exchangeElement(element, count) {
-	// Zunächst lesen wir den ursprünglichen Inhalt des Elements aus, 
-	// dieses enthült nämlich die relevanten Nummer.
-	var phoneNumber = element.firstChild.data;
-	var id = element.id;
-	// Das Elternelement ist eine Link (<a>) mit der Telefonnummer (Durchwahl)
-	// und dem eigentlichen Namen des Ziels
-	var parent = element.parentNode;
-	
-	// Im nächsten Schritt löschen wir das Element, welches bereits 
-	// vorhanden war:
-	parent.removeChild(element);
-
-	if(parent.firstChild == null)
-	{
-		return;
-	}
-
-	var userName = parent.firstChild.data;
-	
-	var nElement = document.createElement("div");
-	nElement.id 		= id;
-	nElement.className 	= "okaPhoneState";
-
-	var currentRow = Math.ceil( (count+1) / block.getColumnCount() );
-	var currentColumn = count - ((currentRow-1) * block.getColumnCount());
-
-	var textElement		= document.createElement("div");
-	textElement.className = "okaPhoneStateText";
-	var nTextElement 	= document.createTextNode(phoneNumber);
-	textElement.appendChild(nTextElement);
-	nElement.appendChild(textElement);
-	document.getElementsByTagName("body")[0].appendChild(nElement);
-	
-	// Nun erzeugen wir noch ein span Objekt, in das wir den Namen packen:
-	var nameElement = document.createElement("div");
-	nameElement.className = "okaPhoneStateName";
-	nameElement.style.fontSize = toPx(block.getNameFontSize());
-	nameElement.appendChild(document.createTextNode(userName));
-	nElement.appendChild(nameElement);
-
-	var marginLeft = parseInt(document.defaultView.getComputedStyle(nElement, null).getPropertyValue("margin-left"), 10);
-	var marginTop = parseInt(document.defaultView.getComputedStyle(nElement, null).getPropertyValue("margin-top"), 10);
-
-	nElement.style.width	= toPx(block.getColumnSize() - marginLeft);
-	nElement.style.height 	= toPx(block.getRowSize() - marginTop);
-	nElement.style.left 	= toPx(currentColumn * block.getColumnSize());
-	nElement.style.top  	= toPx((currentRow-1) * block.getRowSize());
-	nElement.style.fontSize = toPx(block.getRowSize() / 2);
-}
-
 function isLoginForm() {
 	return (document.getElementById('standardlogin'));
 }
@@ -301,7 +238,9 @@ function checkLoaded() {
 	if(document.getElementById("pulldown_list_internal").getElementsByClassName("numberrow").length > 0)
 	{
 		console.log("Building...");
-		buildOverview();
+		phonestate.run();
+		console.log("Build finished");
+//		buildOverview();
 	} else {
 		loadedTimer = window.setTimeout(checkLoaded, 5000);
 	}

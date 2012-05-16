@@ -1,6 +1,6 @@
 {
    "content_scripts": [ {
-      "js": [ "SipgatePhoneState.user.js" ],
+      "js": [ "SipgatePhoneState.user.js", "lib/jquery-1.7.2.js" ],
       "css": ["style.css"],
       "matches": [
 			"https://secure.live.sipgate.de/",
