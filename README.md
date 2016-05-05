@@ -32,5 +32,4 @@ Installation ist nur über die Developerübersicht in Chrome möglich:
 
 ## TODO
 
-* Endlosschleife bei falschen Usercredentials fixen
 * Settings
